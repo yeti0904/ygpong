@@ -2,6 +2,8 @@
 
 a simple pong  game written in fortran 2003 using ncurses
 
+it is very buggy and has no points system yet
+
 <img src="pic/screenshot.png">
 
 ## build
