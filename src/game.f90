@@ -30,6 +30,7 @@ module Game
     subroutine Game_Update(input)
         integer       :: input
         type (Vec2_t) :: screenSize
+        real          :: random
 
         call getmaxyx(stdscr, screenSize%y, screenSize%x)
 
@@ -61,9 +62,19 @@ module Game
         game_ballPosition%y = game_ballPosition%y + game_ballSpeed%y
 
         if (int(game_ballPosition%x) <= 0) then
-            game_ballSpeed%x = game_ballSpeed%x * (-1)
+            call random_number(random)
+            game_ballSpeed%x = 1.0
+            game_ballSpeed%y = 1 - (random * 2)
+            
+            game_ballPosition%x  = screenSize%x / 2
+            game_ballPosition%y  = screenSize%y / 2
         else if (int(game_ballPosition%x) >= screenSize%x - 1) then
-            game_ballSpeed%x = game_ballSpeed%x * (-1)
+            call random_number(random)
+            game_ballSpeed%x = -1.0
+            game_ballSpeed%y = 1 - (random * 2)
+            
+            game_ballPosition%x  = screenSize%x / 2
+            game_ballPosition%y  = screenSize%y / 2
         else if (int(game_ballPosition%y) <= 0) then
             game_ballSpeed%y = game_ballSpeed%y * (-1)
         else if (int(game_ballPosition%y) >= screenSize%y - 1) then
